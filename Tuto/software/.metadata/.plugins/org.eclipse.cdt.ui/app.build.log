@@ -1,0 +1,15 @@
+17:30:09 **** Incremental Build of configuration Debug for project app ****
+"C:\\altera_lite\\25.1std\\riscfree\\build_tools\\bin\\make.exe" -j all 
+[ 94%] Built target hal2_bsp
+[ 96%] Built target app.elf
+[100%] Built target create-hex
+[100%] Reporting memory available for stack + heap in app.elf.
+[100%] Built target create-objdump
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _msize
+app.elf
+ * 95.12 KB - Program size (code + initialized data).
+ * 26.66 KB - Free for stack + heap.
+[100%] Built target niosv-stack-report
+
+17:30:10 Build Finished. 0 errors, 0 warnings. (took 1s.347ms)
+

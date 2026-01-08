@@ -1,0 +1,6 @@
+#include <stdio.h>
+
+int main(void){
+	printf("Hello Nios V World\n");
+	return 0;
+}
