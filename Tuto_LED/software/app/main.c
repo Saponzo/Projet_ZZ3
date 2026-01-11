@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
+#include <unistd.h>
+
+int main() {
+    printf("Système prêt : Contrôle des 4 LEDs par bouton\n");
+
+    int etat_bouton;
+
+    while (1) {
+        // 1. Lire l'état du bouton (PIO en entrée)
+        // IORD_ALTERA_AVALON_PIO_DATA renvoie l'état des pins
+        etat_bouton = IORD_ALTERA_AVALON_PIO_DATA(PB_PIO_BASE);
+
+        // 2. Logique de contrôle
+        // Note : Souvent sur les cartes Intel, un bouton appuyé = 0 (logique inversée)
+        // Si votre bouton est en logique normale (1 quand appuyé) :
+        if (etat_bouton == 0) {
+            // Allumer les 4 LEDs (0xF en hexadécimal = 1111 en binaire)
+            IOWR_ALTERA_AVALON_PIO_DATA(LED_PIO_BASE, 0xF);
+        }
+        else {
+            // Éteindre toutes les LEDs
+            IOWR_ALTERA_AVALON_PIO_DATA(LED_PIO_BASE, 0x0);
+        }
+
+        // Petite pause pour stabiliser la lecture (anti-rebond logiciel léger)
+        usleep(10000);
+    }
+
+    return 0;
+}

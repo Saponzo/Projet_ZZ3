@@ -1,0 +1,25 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst niosv_led.onchip_memory -pg 1 -lvl 3 -y 40
+preplace inst niosv_led.niosv_cpu.timer_module -pg 1
+preplace inst niosv_led.niosv_cpu.dbg_mod -pg 1
+preplace inst niosv_led.clk_0 -pg 1 -lvl 1 -y 50
+preplace inst niosv_led.niosv_cpu.debug_reset_bridge -pg 1
+preplace inst niosv_led.niosv_cpu.clock_bridge -pg 1
+preplace inst niosv_led.led_pio -pg 1 -lvl 3 -y 320
+preplace inst niosv_led.pb_pio -pg 1 -lvl 3 -y 220
+preplace inst niosv_led.niosv_cpu -pg 1 -lvl 2 -y 110
+preplace inst niosv_led.jtag_uart -pg 1 -lvl 3 -y 120
+preplace inst niosv_led -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst niosv_led.niosv_cpu.hart -pg 1
+preplace inst niosv_led.niosv_cpu.reset_bridge -pg 1
+preplace netloc EXPORT<net_container>niosv_led</net_container>(SLAVE)pb_pio.external_connection,(SLAVE)niosv_led.pb_pio) 1 0 3 NJ 250 NJ 250 NJ
+preplace netloc POINT_TO_POINT<net_container>niosv_led</net_container>(SLAVE)jtag_uart.irq,(MASTER)niosv_cpu.platform_irq_rx) 1 2 1 640
+preplace netloc EXPORT<net_container>niosv_led</net_container>(SLAVE)niosv_led.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc INTERCONNECT<net_container>niosv_led</net_container>(SLAVE)onchip_memory.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(MASTER)niosv_cpu.instruction_manager,(SLAVE)led_pio.s1,(MASTER)niosv_cpu.data_manager,(SLAVE)pb_pio.s1,(SLAVE)niosv_cpu.timer_sw_agent,(SLAVE)niosv_cpu.dm_agent) 1 1 2 310 70 620
+preplace netloc INTERCONNECT<net_container>niosv_led</net_container>(MASTER)clk_0.clk_reset,(SLAVE)niosv_cpu.reset,(SLAVE)pb_pio.reset,(SLAVE)onchip_memory.reset1,(MASTER)niosv_cpu.dbg_reset_out,(SLAVE)led_pio.reset,(SLAVE)jtag_uart.reset,(SLAVE)niosv_cpu.ndm_reset_in) 1 1 2 290 50 660
+preplace netloc EXPORT<net_container>niosv_led</net_container>(SLAVE)clk_0.clk_in,(SLAVE)niosv_led.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>niosv_led</net_container>(SLAVE)niosv_cpu.clk,(SLAVE)pb_pio.clk,(SLAVE)jtag_uart.clk,(SLAVE)onchip_memory.clk1,(MASTER)clk_0.clk,(SLAVE)led_pio.clk) 1 1 2 270 30 680
+preplace netloc EXPORT<net_container>niosv_led</net_container>(SLAVE)niosv_led.led_pio,(SLAVE)led_pio.external_connection) 1 0 3 NJ 350 NJ 350 NJ
+levelinfo -pg 1 0 60 880
+levelinfo -hier niosv_led 70 100 420 720 870
