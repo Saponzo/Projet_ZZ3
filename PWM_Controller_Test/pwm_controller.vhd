@@ -23,7 +23,7 @@ begin
 	CLK_CNT_PROC : process(clk) 
 	begin
 	  if rising_edge(clk) then
-		 if rst = '1' then
+		 if rst = '0' then
 			clk_cnt <= 0;
 			  
 		 else
@@ -41,7 +41,7 @@ begin
 	PWM_PROC : process(clk)
 	begin
 	  if rising_edge(clk) then
-		 if rst = '1' then
+		 if rst = '0' then
 			pwm_cnt <= (others => '0');
 			pwm_out <= '0';
 	  
