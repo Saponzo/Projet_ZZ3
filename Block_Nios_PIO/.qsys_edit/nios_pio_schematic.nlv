@@ -1,0 +1,22 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst nios_pio.pio_0 -pg 1 -lvl 3 -y 210
+preplace inst nios_pio -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst nios_pio.niosv_cpu.dbg_mod -pg 1
+preplace inst nios_pio.niosv_cpu -pg 1 -lvl 2 -y 90
+preplace inst nios_pio.niosv_cpu.reset_bridge -pg 1
+preplace inst nios_pio.clk_0 -pg 1 -lvl 1 -y 30
+preplace inst nios_pio.niosv_cpu.timer_module -pg 1
+preplace inst nios_pio.jtag_uart_0 -pg 1 -lvl 3 -y 110
+preplace inst nios_pio.onchip_memory2_0 -pg 1 -lvl 3 -y 30
+preplace inst nios_pio.niosv_cpu.clock_bridge -pg 1
+preplace inst nios_pio.niosv_cpu.debug_reset_bridge -pg 1
+preplace inst nios_pio.niosv_cpu.hart -pg 1
+preplace netloc EXPORT<net_container>nios_pio</net_container>(SLAVE)nios_pio.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc INTERCONNECT<net_container>nios_pio</net_container>(SLAVE)niosv_cpu.ndm_reset_in,(MASTER)niosv_cpu.dbg_reset_out,(SLAVE)pio_0.reset,(SLAVE)niosv_cpu.reset,(MASTER)clk_0.clk_reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)jtag_uart_0.reset) 1 1 2 280 50 610
+preplace netloc FAN_OUT<net_container>nios_pio</net_container>(MASTER)clk_0.clk,(SLAVE)niosv_cpu.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)pio_0.clk,(SLAVE)onchip_memory2_0.clk1) 1 1 2 260 30 650
+preplace netloc POINT_TO_POINT<net_container>nios_pio</net_container>(MASTER)niosv_cpu.platform_irq_rx,(SLAVE)jtag_uart_0.irq) 1 2 1 N
+preplace netloc INTERCONNECT<net_container>nios_pio</net_container>(SLAVE)pio_0.s1,(SLAVE)niosv_cpu.dm_agent,(MASTER)niosv_cpu.data_manager,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)onchip_memory2_0.s1,(SLAVE)niosv_cpu.timer_sw_agent,(MASTER)niosv_cpu.instruction_manager) 1 1 2 300 230 630
+preplace netloc EXPORT<net_container>nios_pio</net_container>(SLAVE)nios_pio.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+levelinfo -pg 1 0 50 860
+levelinfo -hier nios_pio 60 90 410 700 850
