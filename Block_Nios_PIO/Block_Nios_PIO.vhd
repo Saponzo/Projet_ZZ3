@@ -8,7 +8,7 @@ generic (
     clk_cnt_len : positive := 1
  );
 port (
-	clk_i rst_i: in std_logic;
+	clk_i, rst_i: in std_logic;
 	output_o: out std_logic
 	);
 end block_nios_pio;
@@ -25,16 +25,19 @@ end component pwm_controller;
 
 
  component nios_pio is
-    port (
-            clk_clk       : in std_logic := 'X'; -- clk
-            reset_reset_n : in std_logic := 'X'  -- reset_n
+        port (
+            clk_clk                          : in  std_logic                    := 'X'; -- clk
+            reset_reset_n                    : in  std_logic                    := 'X'; -- reset_n
+            pio_0_external_connection_export : out std_logic_vector(7 downto 0)         -- export
         );
-    end component nios_pio;
-signal S_s : std_logic_vector(31 donwto 0);
+ end component nios_pio;
+
+signal output_nios_s : std_logic_vector(7 downto 0);
+signal input_pwm_s : unsigned(7 downto 0);
 	 
 begin
-
-    u0 : component nios_pio port map (clk_i, rst_i);
-	 u1 : component pwm_controller port map (clk_i, rst_i, S_s , output_o);
+	input_pwm_s <= unsigned(output_nios_s);
+    u0 : component nios_pio port map (clk_i, rst_i, output_nios_s);
+	 u1 : component pwm_controller port map (clk_i, rst_i, input_pwm_s , output_o);
 end structure;
             

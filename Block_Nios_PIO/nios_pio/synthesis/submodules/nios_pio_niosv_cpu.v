@@ -7,64 +7,42 @@
 
 `timescale 1 ps / 1 ps
 module nios_pio_niosv_cpu (
-		input  wire        clk,                          //                 clk.clk
-		input  wire        reset_reset,                  //               reset.reset
-		input  wire [15:0] platform_irq_rx_irq,          //     platform_irq_rx.irq
-		input  wire        ndm_reset_in_reset,           //        ndm_reset_in.reset
-		input  wire [5:0]  timer_sw_agent_address,       //      timer_sw_agent.address
-		input  wire [3:0]  timer_sw_agent_byteenable,    //                    .byteenable
-		input  wire        timer_sw_agent_read,          //                    .read
-		output wire [31:0] timer_sw_agent_readdata,      //                    .readdata
-		input  wire        timer_sw_agent_write,         //                    .write
-		input  wire [31:0] timer_sw_agent_writedata,     //                    .writedata
-		output wire        timer_sw_agent_waitrequest,   //                    .waitrequest
-		output wire        timer_sw_agent_readdatavalid, //                    .readdatavalid
-		output wire [31:0] instruction_manager_awaddr,   // instruction_manager.awaddr
-		output wire [2:0]  instruction_manager_awprot,   //                    .awprot
-		output wire        instruction_manager_awvalid,  //                    .awvalid
-		input  wire        instruction_manager_awready,  //                    .awready
-		output wire [31:0] instruction_manager_wdata,    //                    .wdata
-		output wire [3:0]  instruction_manager_wstrb,    //                    .wstrb
-		output wire        instruction_manager_wvalid,   //                    .wvalid
-		input  wire        instruction_manager_wready,   //                    .wready
-		input  wire [1:0]  instruction_manager_bresp,    //                    .bresp
-		input  wire        instruction_manager_bvalid,   //                    .bvalid
-		output wire        instruction_manager_bready,   //                    .bready
-		output wire [31:0] instruction_manager_araddr,   //                    .araddr
-		output wire [2:0]  instruction_manager_arprot,   //                    .arprot
-		output wire        instruction_manager_arvalid,  //                    .arvalid
-		input  wire        instruction_manager_arready,  //                    .arready
-		input  wire [31:0] instruction_manager_rdata,    //                    .rdata
-		input  wire [1:0]  instruction_manager_rresp,    //                    .rresp
-		input  wire        instruction_manager_rvalid,   //                    .rvalid
-		output wire        instruction_manager_rready,   //                    .rready
-		output wire [31:0] data_manager_awaddr,          //        data_manager.awaddr
-		output wire [2:0]  data_manager_awprot,          //                    .awprot
-		output wire        data_manager_awvalid,         //                    .awvalid
-		input  wire        data_manager_awready,         //                    .awready
-		output wire [31:0] data_manager_wdata,           //                    .wdata
-		output wire [3:0]  data_manager_wstrb,           //                    .wstrb
-		output wire        data_manager_wvalid,          //                    .wvalid
-		input  wire        data_manager_wready,          //                    .wready
-		input  wire [1:0]  data_manager_bresp,           //                    .bresp
-		input  wire        data_manager_bvalid,          //                    .bvalid
-		output wire        data_manager_bready,          //                    .bready
-		output wire [31:0] data_manager_araddr,          //                    .araddr
-		output wire [2:0]  data_manager_arprot,          //                    .arprot
-		output wire        data_manager_arvalid,         //                    .arvalid
-		input  wire        data_manager_arready,         //                    .arready
-		input  wire [31:0] data_manager_rdata,           //                    .rdata
-		input  wire [1:0]  data_manager_rresp,           //                    .rresp
-		input  wire        data_manager_rvalid,          //                    .rvalid
-		output wire        data_manager_rready,          //                    .rready
-		input  wire [15:0] dm_agent_address,             //            dm_agent.address
-		input  wire        dm_agent_read,                //                    .read
-		output wire [31:0] dm_agent_readdata,            //                    .readdata
-		input  wire        dm_agent_write,               //                    .write
-		input  wire [31:0] dm_agent_writedata,           //                    .writedata
-		output wire        dm_agent_waitrequest,         //                    .waitrequest
-		output wire        dm_agent_readdatavalid,       //                    .readdatavalid
-		output wire        dbg_reset_out_reset           //       dbg_reset_out.reset
+		input  wire        clk,                               //                 clk.clk
+		input  wire        reset_reset,                       //               reset.reset
+		input  wire [15:0] platform_irq_rx_irq,               //     platform_irq_rx.irq
+		input  wire        ndm_reset_in_reset,                //        ndm_reset_in.reset
+		input  wire [5:0]  timer_sw_agent_address,            //      timer_sw_agent.address
+		input  wire [3:0]  timer_sw_agent_byteenable,         //                    .byteenable
+		input  wire        timer_sw_agent_read,               //                    .read
+		output wire [31:0] timer_sw_agent_readdata,           //                    .readdata
+		input  wire        timer_sw_agent_write,              //                    .write
+		input  wire [31:0] timer_sw_agent_writedata,          //                    .writedata
+		output wire        timer_sw_agent_waitrequest,        //                    .waitrequest
+		output wire        timer_sw_agent_readdatavalid,      //                    .readdatavalid
+		input  wire [31:0] instruction_manager_readdata,      // instruction_manager.readdata
+		input  wire        instruction_manager_waitrequest,   //                    .waitrequest
+		input  wire        instruction_manager_readdatavalid, //                    .readdatavalid
+		input  wire [1:0]  instruction_manager_response,      //                    .response
+		output wire [31:0] instruction_manager_address,       //                    .address
+		output wire        instruction_manager_read,          //                    .read
+		input  wire [31:0] data_manager_readdata,             //        data_manager.readdata
+		input  wire        data_manager_waitrequest,          //                    .waitrequest
+		input  wire        data_manager_readdatavalid,        //                    .readdatavalid
+		input  wire [1:0]  data_manager_response,             //                    .response
+		output wire [31:0] data_manager_address,              //                    .address
+		output wire        data_manager_read,                 //                    .read
+		output wire        data_manager_write,                //                    .write
+		output wire [31:0] data_manager_writedata,            //                    .writedata
+		output wire [3:0]  data_manager_byteenable,           //                    .byteenable
+		input  wire        data_manager_writeresponsevalid,   //                    .writeresponsevalid
+		input  wire [15:0] dm_agent_address,                  //            dm_agent.address
+		input  wire        dm_agent_read,                     //                    .read
+		output wire [31:0] dm_agent_readdata,                 //                    .readdata
+		input  wire        dm_agent_write,                    //                    .write
+		input  wire [31:0] dm_agent_writedata,                //                    .writedata
+		output wire        dm_agent_waitrequest,              //                    .waitrequest
+		output wire        dm_agent_readdatavalid,            //                    .readdatavalid
+		output wire        dbg_reset_out_reset                //       dbg_reset_out.reset
 	);
 
 	wire    irq_mapper_receiver0_irq;           // dbg_mod:dbg_irq -> irq_mapper:receiver0_irq
@@ -82,67 +60,39 @@ module nios_pio_niosv_cpu (
 		.HARTID          (32'b00000000000000000000000000000000),
 		.CORE_EXTN       (256),
 		.DEBUG_ENABLED   (1),
-		.DEVICE_FAMILY   ("MAX V"),
+		.DEVICE_FAMILY   ("MAX 10"),
 		.USE_RESET_REQ   (0),
 		.ECC_EN          (0),
 		.ECC_FULL        (0),
 		.SMALL_CORE      (0)
 	) hart (
-		.clk             (clk),                            //             cpu_clk.clk
-		.reset           (rst_controller_reset_out_reset), //           cpu_reset.reset
-		.irq_plat_vec    (platform_irq_rx_irq),            //     platform_irq_rx.irq
-		.irq_debug       (hart_debug_irq_rx_irq),          //        debug_irq_rx.irq
-		.irq_timer       (hart_timer_irq_rx_irq),          //        timer_irq_rx.irq
-		.irq_sw          (hart_sw_irq_rx_irq),             //           sw_irq_rx.irq
-		.instr_awaddr    (instruction_manager_awaddr),     // instruction_manager.awaddr
-		.instr_awprot    (instruction_manager_awprot),     //                    .awprot
-		.instr_awvalid   (instruction_manager_awvalid),    //                    .awvalid
-		.instr_awready   (instruction_manager_awready),    //                    .awready
-		.instr_wdata     (instruction_manager_wdata),      //                    .wdata
-		.instr_wstrb     (instruction_manager_wstrb),      //                    .wstrb
-		.instr_wvalid    (instruction_manager_wvalid),     //                    .wvalid
-		.instr_wready    (instruction_manager_wready),     //                    .wready
-		.instr_bresp     (instruction_manager_bresp),      //                    .bresp
-		.instr_bvalid    (instruction_manager_bvalid),     //                    .bvalid
-		.instr_bready    (instruction_manager_bready),     //                    .bready
-		.instr_araddr    (instruction_manager_araddr),     //                    .araddr
-		.instr_arprot    (instruction_manager_arprot),     //                    .arprot
-		.instr_arvalid   (instruction_manager_arvalid),    //                    .arvalid
-		.instr_arready   (instruction_manager_arready),    //                    .arready
-		.instr_rdata     (instruction_manager_rdata),      //                    .rdata
-		.instr_rresp     (instruction_manager_rresp),      //                    .rresp
-		.instr_rvalid    (instruction_manager_rvalid),     //                    .rvalid
-		.instr_rready    (instruction_manager_rready),     //                    .rready
-		.data_awaddr     (data_manager_awaddr),            //        data_manager.awaddr
-		.data_awprot     (data_manager_awprot),            //                    .awprot
-		.data_awvalid    (data_manager_awvalid),           //                    .awvalid
-		.data_awready    (data_manager_awready),           //                    .awready
-		.data_wdata      (data_manager_wdata),             //                    .wdata
-		.data_wstrb      (data_manager_wstrb),             //                    .wstrb
-		.data_wvalid     (data_manager_wvalid),            //                    .wvalid
-		.data_wready     (data_manager_wready),            //                    .wready
-		.data_bresp      (data_manager_bresp),             //                    .bresp
-		.data_bvalid     (data_manager_bvalid),            //                    .bvalid
-		.data_bready     (data_manager_bready),            //                    .bready
-		.data_araddr     (data_manager_araddr),            //                    .araddr
-		.data_arprot     (data_manager_arprot),            //                    .arprot
-		.data_arvalid    (data_manager_arvalid),           //                    .arvalid
-		.data_arready    (data_manager_arready),           //                    .arready
-		.data_rdata      (data_manager_rdata),             //                    .rdata
-		.data_rresp      (data_manager_rresp),             //                    .rresp
-		.data_rvalid     (data_manager_rvalid),            //                    .rvalid
-		.data_rready     (data_manager_rready),            //                    .rready
-		.reset_req       (1'b0),                           //         (terminated)
-		.reset_req_ack   (),                               //         (terminated)
-		.core_ecc_status (),                               //         (terminated)
-		.core_ecc_src    (),                               //         (terminated)
-		.instr_awsize    (),                               //         (terminated)
-		.instr_wlast     (),                               //         (terminated)
-		.instr_arsize    (),                               //         (terminated)
-		.data_awsize     (),                               //         (terminated)
-		.data_wlast      (),                               //         (terminated)
-		.data_arsize     (),                               //         (terminated)
-		.irq_ext         (1'b0)                            //         (terminated)
+		.clk                   (clk),                               //             cpu_clk.clk
+		.reset                 (rst_controller_reset_out_reset),    //           cpu_reset.reset
+		.irq_plat_vec          (platform_irq_rx_irq),               //     platform_irq_rx.irq
+		.irq_debug             (hart_debug_irq_rx_irq),             //        debug_irq_rx.irq
+		.irq_timer             (hart_timer_irq_rx_irq),             //        timer_irq_rx.irq
+		.irq_sw                (hart_sw_irq_rx_irq),                //           sw_irq_rx.irq
+		.instr_avl_rdata       (instruction_manager_readdata),      // instruction_manager.readdata
+		.instr_avl_waitrequest (instruction_manager_waitrequest),   //                    .waitrequest
+		.instr_avl_rdatavalid  (instruction_manager_readdatavalid), //                    .readdatavalid
+		.instr_avl_resp        (instruction_manager_response),      //                    .response
+		.instr_avl_addr        (instruction_manager_address),       //                    .address
+		.instr_avl_read        (instruction_manager_read),          //                    .read
+		.data_avl_rdata        (data_manager_readdata),             //        data_manager.readdata
+		.data_avl_waitrequest  (data_manager_waitrequest),          //                    .waitrequest
+		.data_avl_rdatavalid   (data_manager_readdatavalid),        //                    .readdatavalid
+		.data_avl_resp         (data_manager_response),             //                    .response
+		.data_avl_addr         (data_manager_address),              //                    .address
+		.data_avl_read         (data_manager_read),                 //                    .read
+		.data_avl_write        (data_manager_write),                //                    .write
+		.data_avl_wdata        (data_manager_writedata),            //                    .writedata
+		.data_avl_byteen       (data_manager_byteenable),           //                    .byteenable
+		.data_avl_wrespvalid   (data_manager_writeresponsevalid),   //                    .writeresponsevalid
+		.reset_req             (1'b0),                              //         (terminated)
+		.reset_req_ack         (),                                  //         (terminated)
+		.core_ecc_status       (),                                  //         (terminated)
+		.core_ecc_src          (),                                  //         (terminated)
+		.irq_ext               (1'b0)                               //         (terminated)
 	);
 
 	niosv_timer_msip #(
@@ -167,7 +117,7 @@ module nios_pio_niosv_cpu (
 	niosv_dm_top #(
 		.DEBUG_RESET_EN (1),
 		.FPU_EN         (0),
-		.DEVICE_FAMILY  ("MAX V")
+		.DEVICE_FAMILY  ("MAX 10")
 	) dbg_mod (
 		.clk                (clk),                      //           clk.clk
 		.reset              (reset_reset),              //         reset.reset
