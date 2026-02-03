@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2026.01.27.19:04:09</td>
+    <td class="l">2026.02.03.19:32:51</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -87,9 +87,12 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    </div><span style="display:inline-block ; width:28px"> </span>
    <div style="display:inline-block ; text-align:left"><span>Processor
      <br/>&#160;&#160;
-     <a href="#module_intel_niosv_c_0"><b>intel_niosv_c_0</b>
-     </a> Small Core 4.1.0
+     <a href="#module_intel_niosv_m_0"><b>intel_niosv_m_0</b>
+     </a> Abbotts Lake 26.0.0
      <br/>All Components
+     <br/>&#160;&#160;
+     <a href="#module_intel_niosv_m_0"><b>intel_niosv_m_0</b>
+     </a> intel_niosv_m 26.0.0
      <br/>&#160;&#160;
      <a href="#module_jtag_uart_0"><b>jtag_uart_0</b>
      </a> altera_avalon_jtag_uart 25.1
@@ -106,53 +109,45 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="mmap">
    <tr>
     <td class="empty" rowspan="2"></td>
-    <td class="mastermodule" colspan="2">
-     <a href="#module_intel_niosv_c_0"><b>intel_niosv_c_0</b>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_intel_niosv_m_0"><b>intel_niosv_m_0</b>
      </a>
     </td>
    </tr>
    <tr>
-    <td class="masterl">&#160;instruction_manager</td>
-    <td class="masterr">&#160;data_manager</td>
+    <td class="slavem">timer_sw_agent&#160;</td>
+   </tr>
+   <tr>
+    <td class="slavem">dm_agent&#160;</td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
      <a href="#module_jtag_uart_0"><b>jtag_uart_0</b>
      </a>
     </td>
-    <td class="empty"></td>
-    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slaveb">avalon_jtag_slave&#160;</td>
-    <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00040010</td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
      <a href="#module_onchip_memory2_0"><b>onchip_memory2_0</b>
      </a>
     </td>
-    <td class="empty"></td>
-    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slaveb">s1&#160;</td>
-    <td class="addr"><span style="color:#989898">0x</span>00020000</td>
-    <td class="addr"><span style="color:#989898">0x</span>00020000</td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
      <a href="#module_pio_0"><b>pio_0</b>
      </a>
     </td>
-    <td class="empty"></td>
-    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slaveb">s1&#160;</td>
-    <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00040000</td>
    </tr>
   </table>
   <a name="module_clk_0"> </a>
@@ -202,10 +197,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_intel_niosv_c_0"> </a>
+  <a name="module_intel_niosv_m_0"> </a>
   <div>
    <hr/>
-   <h2>intel_niosv_c_0</h2>intel_niosv_c v4.1.0
+   <h2>intel_niosv_m_0</h2>intel_niosv_m v26.0.0
    <br/>
    <div class="greydiv">
     <table class="connectionboxes">
@@ -214,7 +209,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="14">intel_niosv_c_0</td>
+      <td class="main" rowspan="16">intel_niosv_m_0</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -229,7 +224,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="from">data_manager&#160;&#160;</td>
-      <td class="neighbor" rowspan="2">
+      <td class="neighbor" rowspan="4">
        <a href="#module_jtag_uart_0">jtag_uart_0</a>
       </td>
      </tr>
@@ -237,6 +232,16 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="to">&#160;&#160;avalon_jtag_slave</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">platform_irq_rx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;irq</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -290,40 +295,32 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <h2>Parameters</h2>
       <table>
        <tr>
-        <td class="parametername">deviceFamily</td>
-        <td class="parametervalue">MAX10FPGA</td>
-       </tr>
-       <tr>
         <td class="parametername">clockFrequency</td>
         <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">instSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='onchip_memory2_0.s1' start='0x20000' end='0x40000' type='altera_avalon_onchip_memory2.s1' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='onchip_memory2_0.s1' start='0x0' end='0x20000' type='altera_avalon_onchip_memory2.s1' /&gt;&lt;slave name='intel_niosv_m_0.dm_agent' start='0x20000' end='0x30000' type='intel_niosv_m.dm_agent' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">dataSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='onchip_memory2_0.s1' start='0x20000' end='0x40000' type='altera_avalon_onchip_memory2.s1' /&gt;&lt;slave name='pio_0.s1' start='0x40000' end='0x40010' type='altera_avalon_pio.s1' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x40010' end='0x40018' type='altera_avalon_jtag_uart.avalon_jtag_slave' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='onchip_memory2_0.s1' start='0x0' end='0x20000' type='altera_avalon_onchip_memory2.s1' /&gt;&lt;slave name='intel_niosv_m_0.dm_agent' start='0x20000' end='0x30000' type='intel_niosv_m.dm_agent' /&gt;&lt;slave name='pio_0.s1' start='0x30000' end='0x30010' type='altera_avalon_pio.s1' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x30010' end='0x30018' type='altera_avalon_jtag_uart.avalon_jtag_slave' /&gt;&lt;slave name='intel_niosv_m_0.timer_sw_agent' start='0x30040' end='0x30080' type='intel_niosv_m.timer_sw_agent' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
-        <td class="parametername">enableAvalonInterface</td>
+        <td class="parametername">enableDebug</td>
         <td class="parametervalue">true</td>
        </tr>
        <tr>
-        <td class="parametername">archSize</td>
-        <td class="parametervalue">32</td>
+        <td class="parametername">enableDebugReset</td>
+        <td class="parametervalue">false</td>
        </tr>
        <tr>
-        <td class="parametername">hartID</td>
-        <td class="parametervalue">0</td>
+        <td class="parametername">useResetReq</td>
+        <td class="parametervalue">false</td>
        </tr>
        <tr>
         <td class="parametername">numGpr</td>
         <td class="parametervalue">32</td>
-       </tr>
-       <tr>
-        <td class="parametername">enableResetReq</td>
-        <td class="parametervalue">false</td>
        </tr>
        <tr>
         <td class="parametername">resetSlave</td>
@@ -334,11 +331,31 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
         <td class="parametervalue">0</td>
        </tr>
        <tr>
+        <td class="parametername">interruptMode</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">MAX10FPGA</td>
+       </tr>
+       <tr>
+        <td class="parametername">pipelineArch</td>
+        <td class="parametervalue">true</td>
+       </tr>
+       <tr>
+        <td class="parametername">enableAvalonInterface</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">hartId</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
         <td class="parametername">enableECCLite</td>
         <td class="parametervalue">false</td>
        </tr>
        <tr>
-        <td class="parametername">useResetReq</td>
+        <td class="parametername">enableECCFull</td>
         <td class="parametervalue">false</td>
        </tr>
        <tr>
@@ -355,6 +372,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_RESET_DOMAIN</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">AUTO_PLATFORM_IRQ_RX_INTERRUPTS_USED</td>
         <td class="parametervalue">1</td>
        </tr>
        <tr>
@@ -392,7 +413,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">HAS_CSR_SUPPORT</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">HAS_DEBUG_STUB</td>
+        <td class="parametervalue"></td>
        </tr>
        <tr>
         <td class="parametername">ICACHE_LINE_SIZE</td>
@@ -411,8 +436,16 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
         <td class="parametervalue">32</td>
        </tr>
        <tr>
+        <td class="parametername">INT_MODE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">MTIME_OFFSET</td>
+        <td class="parametervalue">0x00030040</td>
+       </tr>
+       <tr>
         <td class="parametername">NIOSV_CORE_VARIANT</td>
-        <td class="parametervalue">4</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">NUM_GPR</td>
@@ -420,7 +453,15 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">RESET_ADDR</td>
-        <td class="parametervalue">0x00020000</td>
+        <td class="parametervalue">0x00000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">TICKS_PER_SEC</td>
+        <td class="parametervalue">no_quote(NIOSV_INTERNAL_TIMER_TICKS_PER_SECOND)</td>
+       </tr>
+       <tr>
+        <td class="parametername">TIMER_DEVICE_TYPE</td>
+        <td class="parametervalue">2</td>
        </tr>
       </table>
      </td>
@@ -435,14 +476,20 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <div class="greydiv">
     <table class="connectionboxes">
      <tr>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_intel_niosv_c_0">intel_niosv_c_0</a>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_intel_niosv_m_0">intel_niosv_m_0</a>
       </td>
       <td class="from">data_manager&#160;&#160;</td>
-      <td class="main" rowspan="7">jtag_uart_0</td>
+      <td class="main" rowspan="9">jtag_uart_0</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;avalon_jtag_slave</td>
+     </tr>
+     <tr>
+      <td class="from">platform_irq_rx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;irq</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -614,7 +661,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <table class="connectionboxes">
      <tr>
       <td class="neighbor" rowspan="4">
-       <a href="#module_intel_niosv_c_0">intel_niosv_c_0</a>
+       <a href="#module_intel_niosv_m_0">intel_niosv_m_0</a>
       </td>
       <td class="from">data_manager&#160;&#160;</td>
       <td class="main" rowspan="9">onchip_memory2_0</td>
@@ -882,7 +929,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <table class="connectionboxes">
      <tr>
       <td class="neighbor" rowspan="2">
-       <a href="#module_intel_niosv_c_0">intel_niosv_c_0</a>
+       <a href="#module_intel_niosv_m_0">intel_niosv_m_0</a>
       </td>
       <td class="from">data_manager&#160;&#160;</td>
       <td class="main" rowspan="7">pio_0</td>
@@ -1074,7 +1121,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0,00 seconds</td>
-    <td class="r">rendering took 0,02 seconds</td>
+    <td class="r">rendering took 0,01 seconds</td>
    </tr>
   </table>
  </body>

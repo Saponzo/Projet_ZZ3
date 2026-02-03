@@ -9,11 +9,11 @@ preplace inst nios_pio.clk_0 -pg 1 -lvl 1 -y 30
 preplace inst nios_pio.jtag_uart_0 -pg 1 -lvl 3 -y 110
 preplace inst nios_pio.onchip_memory2_0 -pg 1 -lvl 3 -y 30
 preplace inst nios_pio.intel_niosv_c_0 -pg 1 -lvl 2 -y 70
-preplace netloc EXPORT<net_container>nios_pio</net_container>(SLAVE)pio_0.external_connection,(SLAVE)nios_pio.pio_0_external_connection) 1 0 3 NJ 240 NJ 240 NJ
-preplace netloc FAN_OUT<net_container>nios_pio</net_container>(SLAVE)pio_0.clk,(SLAVE)intel_niosv_c_0.clk,(SLAVE)jtag_uart_0.clk,(MASTER)clk_0.clk,(SLAVE)onchip_memory2_0.clk1) 1 1 2 400 150 770
+preplace netloc FAN_OUT<net_container>nios_pio</net_container>(SLAVE)onchip_memory2_0.clk1,(SLAVE)pio_0.clk,(MASTER)clk_0.clk,(SLAVE)intel_niosv_c_0.clk,(SLAVE)jtag_uart_0.clk) 1 1 2 400 150 770
+preplace netloc INTERCONNECT<net_container>nios_pio</net_container>(SLAVE)onchip_memory2_0.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave,(MASTER)intel_niosv_c_0.instruction_manager,(MASTER)intel_niosv_c_0.data_manager,(SLAVE)pio_0.s1) 1 2 1 730
 preplace netloc EXPORT<net_container>nios_pio</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)nios_pio.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>nios_pio</net_container>(SLAVE)nios_pio.pio_0_external_connection,(SLAVE)pio_0.external_connection) 1 0 3 NJ 240 NJ 240 NJ
 preplace netloc EXPORT<net_container>nios_pio</net_container>(SLAVE)clk_0.clk_in,(SLAVE)nios_pio.clk) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>nios_pio</net_container>(SLAVE)onchip_memory2_0.reset1,(SLAVE)intel_niosv_c_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)jtag_uart_0.reset,(SLAVE)pio_0.reset) 1 1 2 380 260 750
-preplace netloc INTERCONNECT<net_container>nios_pio</net_container>(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)pio_0.s1,(SLAVE)onchip_memory2_0.s1,(MASTER)intel_niosv_c_0.data_manager,(MASTER)intel_niosv_c_0.instruction_manager) 1 2 1 730
+preplace netloc FAN_OUT<net_container>nios_pio</net_container>(MASTER)clk_0.clk_reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)pio_0.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)intel_niosv_c_0.reset) 1 1 2 380 260 750
 levelinfo -pg 1 0 170 980
 levelinfo -hier nios_pio 180 210 530 820 970

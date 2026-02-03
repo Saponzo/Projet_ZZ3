@@ -41,3 +41,5 @@ begin
 	 u1 : component pwm_controller port map (clk_i, rst_i, input_pwm_s , output_o);
 end structure;
             
+
+				 

@@ -75,6 +75,9 @@ set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
 set_global_assignment -name PRE_MAPPING_RESYNTHESIS ON
 set_global_assignment -name FORCE_SSMCLK_TO_ISMCLK OFF
 set_global_assignment -name PROJECT_IP_REGENERATION_POLICY ALWAYS_REGENERATE_IP
+set_location_assignment PIN_P11 -to clk_i
+set_location_assignment PIN_A8 -to output_o
+set_location_assignment PIN_B8 -to rst_i
 set_global_assignment -name QIP_FILE nios_pio/synthesis/nios_pio.qip
 set_global_assignment -name VHDL_FILE pwm_controller.vhd
 set_global_assignment -name VHDL_FILE Block_Nios_PIO.vhd
